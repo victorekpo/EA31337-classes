@@ -1,6 +1,6 @@
 //+------------------------------------------------------------------+
 //|                                                EA31337 framework |
-//|                       Copyright 2016-2018, 31337 Investments Ltd |
+//|                       Copyright 2016-2020, 31337 Investments Ltd |
 //|                                       https://github.com/EA31337 |
 //+------------------------------------------------------------------+
 
@@ -26,7 +26,7 @@
  * Class to collect ticks, bars and other data for statistical purposes.
  */
 class Stats {
-public:
+ public:
   ulong total_bars;
   ulong total_ticks;
   int curr_period;
@@ -36,9 +36,7 @@ public:
   /**
    * Implements class constructor.
    */
-  Stats(void) {
-    Reset();
-  }
+  Stats(void) { Reset(); }
 
   /**
    * Implements class destructor.
@@ -66,58 +64,42 @@ public:
   /**
    * Update stats on deinit.
    */
-  void OnDeinit() {
-  }
+  void OnDeinit() {}
 
   /* Getters */
 
   /**
    * Get number of counted bars.
    */
-  ulong GetTotalBars() {
-    return (total_bars);
-  }
+  ulong GetTotalBars() { return (total_bars); }
 
   /**
    * Get number of counted ticks.
    */
-  ulong GetTotalTicks() {
-    return (total_ticks);
-  }
+  ulong GetTotalTicks() { return (total_ticks); }
 
   /**
    * Get number of ticks per bar.
    */
-  ulong GetTicksPerBar() {
-    return (total_bars > 0 ? (total_ticks / total_bars) : 0);
-  }
+  ulong GetTicksPerBar() { return (total_bars > 0 ? (total_ticks / total_bars) : 0); }
 
   /**
    * Get number of ticks per minute.
    */
-  ulong GetTicksPerMin() {
-    return (total_bars > 0 ? (total_ticks / total_bars / curr_period) : 0);
-  }
+  ulong GetTicksPerMin() { return (total_bars > 0 ? (total_ticks / total_bars / curr_period) : 0); }
 
   /**
    * Get number of ticks per second.
    */
-  double GetTicksPerSec() {
-    return round(total_bars > 0 ? (total_ticks / total_bars / curr_period) / 60 : 0);
-  }
+  double GetTicksPerSec() { return round(total_bars > 0 ? (total_ticks / total_bars / curr_period) / 60 : 0); }
 
   /**
    * Get number of ticks per given time period.
    */
-  ulong GetTicksPerPeriod(int period = PERIOD_H1) {
-    return (GetTicksPerMin() * period);
-  }
+  ulong GetTicksPerPeriod(int period = PERIOD_H1) { return (GetTicksPerMin() * period); }
 
   /**
    * Get number of bars per given time period.
    */
-  ulong GetBarsPerPeriod(int period = PERIOD_H1) {
-    return (total_bars / period);
-  }
-
+  ulong GetBarsPerPeriod(int period = PERIOD_H1) { return (total_bars / period); }
 };
