@@ -36,7 +36,7 @@ enum ENUM_STATS_TYPE {
 template <typename T>
 class Stats {
  public:
-  long periods; // Flags determines periods to keep data.
+  long periods; // Flags determines for which periods to keep the data.
   Dict<long, T> *data;
 
   /**
@@ -66,28 +66,34 @@ class Stats {
    *
    * @param ENUM_STATS_TYPE _type Specify type of calculation.
    */
-  double GetStats(ENUM_STATS_TYPE _type, long _period = OBJ_ALL_PERIODS) {
+  double GetStats(ENUM_STATS_TYPE _type = STATS_AVG) {
+    // @todo
     return WRONG_VALUE;
   }
 
   /**
-   * Get count per period.
+   * Gets total count.
+   *
+   * @return
+   * Returns total count of all values.
+   */
+  int GetCount() {
+    //return data.GetCount();
+    return WRONG_VALUE;
+  }
+
+  /**
+   * Get average count per period.
    *
    * @param ENUM_TIMEFRAMES _period Specify type of calculation.
    *
    * @return
    * Returns average count per period. When PERIOD_CURRENT, returns total number.
    */
-  int GetCount(ENUM_TIMEFRAMES _period = PERIOD_CURRENT) {
-    if (_period == PERIOD_CURRENT) {
-      //return data.GetCount();
-      return WRONG_VALUE;
-    }
-    else {
-      double _psecs = PeriodSeconds(_period);
-      // ...
-      return WRONG_VALUE;
-    }
+  int GetCount(ENUM_TIMEFRAMES _period) {
+    double _psecs = PeriodSeconds(_period);
+    // ...data
+    return WRONG_VALUE;
   }
 
 };
